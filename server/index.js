@@ -19,3 +19,5 @@ app.listen(port, () => console.log(`listening on port: ${port}`));
 app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
+
+app.use('/api/products/', require('./api/productRoute'));
