@@ -1,6 +1,7 @@
-const Item = require('./models/Item');
 const Warehouse = require('./models/Warehouse');
 const Product = require('./models/Product');
+const Shipment = require('./models/Shipment');
+const Item_Shipment = require('./models/Item_Shipment');
 
 const seed = async () => {
   try {
@@ -47,27 +48,29 @@ const seed = async () => {
       description: 'The latest suit by Tony Stark, it is made from nanotech.',
     });
 
-    //sample items
+    //sample shipments
 
-    const mjolinirStock = await Item.create({
-      name: 'Hammers',
-      countOfItem: 29,
-      productId: mjolinir.id,
+    const shipment1 = await Shipment.create({
+      shipping_address: '4255 Trailmaster Drive',
+      ordered_date: '1/11/2022',
+      shipped_date: '1/13/2022',
+      delivered_date: '1/16/2022',
+      warehouseId: wakanda.id,
+    });
+
+    const shipment2 = await Shipment.create({
+      shipping_address: '6826 Darcel Ave',
+      ordered_date: '1/7/2022',
+      shipped_date: '1/13/2022',
       warehouseId: knowhere.id,
     });
 
-    const shieldStock = await Item.create({
-      name: 'Shield batch at bellview',
-      countOfItem: 194,
-      productId: capShield.id,
-      warehouseId: bellview.id,
-    });
+    //sampe item_shipments
 
-    const suitStock = await Item.create({
-      name: 'Suit stock at Wakanda',
-      countOfItem: 23,
-      productId: ironManSuit.id,
-      warehouseId: wakanda.id,
+    await Item_Shipment.create({
+      productId: mjolinir.id,
+      shipmentId: shipment1.id,
+      count: 1,
     });
   } catch (error) {
     console.log(error);

@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { route } = require('express/lib/application');
 const Product = require('../db/models/Product');
 
 //get routes

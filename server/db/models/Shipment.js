@@ -23,6 +23,9 @@ const Shipment = db.define('shipment', {
     type: Sequelize.DATE,
     allowNull: false,
   },
+  shipped_date: {
+    type: Sequelize.DATE,
+  },
   delivered_date: {
     type: Sequelize.DATE,
   },

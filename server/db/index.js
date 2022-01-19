@@ -1,5 +1,4 @@
 const db = require('./db');
-const Item = require('./models/Item');
 const Product = require('./models/Product');
 const Warehouse = require('./models/Warehouse');
 const Shipment = require('./models/Shipment');
@@ -16,11 +15,8 @@ const init = async () => {
   }
 };
 
-Item.belongsTo(Product);
-Item.belongsTo(Warehouse);
-
-Item.belongsToMany(Shipment, { through: Item_Shipment });
-Shipment.belongsToMany(Item, { through: Item_Shipment });
+Product.belongsToMany(Shipment, { through: Item_Shipment });
+Shipment.belongsToMany(Product, { through: Item_Shipment });
 
 Shipment.belongsTo(Warehouse);
 
